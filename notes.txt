@@ -1,0 +1,40 @@
+Web Cookies
+- bits of information tht is stored in the user's browser 
+- who the current user is? favourite things, info in the shopping cart?
+
+Cookie parser middleware
+- npm i cookie-parser
+- req.cookie to see the object and the key from the browser 
+
+Signing Cookies
+- have cookie parser to sign it 
+- on the server side, cookie parser will verify the cookie if anything is screwed up. 
+- making sure the original data to the client is still data that is sent back to us
+
+
+
+const express = require('express')
+const app = express();
+const cookieParser = require("cookie-parser")
+
+app.get('/greet', (req, res) => {
+    
+})
+
+
+app.get('/setname', (req, res) => {
+    // sending a Cookies by passing the name and the value
+    res.cookie('name', 'steevie');
+    res.send('Sent you a cookie')
+})
+
+//getting cookies signed
+app.get('/getsignedcookie', (req, res) {
+    res.cookie("name", "key", {signed: true})
+})
+
+app.listen(3000, ....)
+
+Middleware functions are functions that have access to the request 
+object ( req ), the response object ( res ), and the next function in 
+the application's request-response cycle.
