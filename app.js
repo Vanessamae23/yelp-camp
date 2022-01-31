@@ -1,3 +1,13 @@
+// when we deploy, we will run under production. If we are in development mode, require the env package
+// take the key value pairs and adding them to process.env so that it can be used in the file
+// in production, another way to set 
+// use .gitignore to add entry to the .env ffiles to prevent sensitive info to be displayed in the github repo
+if(process.env.NODE_ENV !== "production") {
+    require('dotenv').config()
+}
+
+
+
 const express = require('express')
 const app = express();
 const path = require('path');
@@ -16,6 +26,7 @@ const flash = require('connect-flash');
 const passport = require('passport') // allows multiple strategies
 const LocalStrategy = require('passport-local'); 
 const User = require('./models/user')
+const mongoSanitize = require('express-mongo-sanitize')
 
 const sessionConfig = {
     secret: 'thisshouldbeabettersecret',
@@ -29,6 +40,7 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(mongoSanitize)
 
 // app.use(passport) must be before the session part
 app.use(passport.initialize());

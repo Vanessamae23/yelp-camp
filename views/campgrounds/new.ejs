@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <div class="row">
     <h1 class="text-center">New Campground</h1>
-    <div class="col-6 offset-3">
+    <div class="col-md-6 offset-md-3">
         <!-- to parse a multipart file, need to use the multer middleware to upload files so need install -->
         <!-- multer adds a body object and a file object to the request object. Body contains the values of the text fields and files contains the files uploaded -->
         <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
@@ -19,7 +19,10 @@
                     Looks good!
                 </div>
             </div>
-            <input type="file" name="image" id="">
+            <div class="mb-3 custom-file">
+                <label for="image" class="form-label">Choose Image: </label>
+                <input class="form-control" type="file" id="image" name="image" multiple>
+            </div>
             <!-- <div class="mb-3">
                 <label class="form-label" for="image">Image Url</label>
                 <input class="form-control" type="text" id="image" name="campground[image]" required />
